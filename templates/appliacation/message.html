@@ -1,0 +1,23 @@
+{% extends 'appliacation/my_base.html' %}
+<html lang="en">
+
+{% block head %}
+{{ super() }}
+    <style type="text/css">
+        .divcss5{text-align:center}
+    </style>
+{% endblock %}
+
+{% block page_content %}
+    <div class="page-header">
+        {% if request.method == "POST" %}
+        <script>alert("{{message}}");</script>
+        {% endif %}
+        <h1> <a href = 'https://ncov.dxy.cn/ncovh5/view/pneumonia'>点击链接</a>了解最新肺炎咨询</h1><br>
+        <h1> <a href = 'https://gitee.com/rdd_233'>点击链接</a>开始网上学习 by <a href='https://github.com/radiumtall'>radiumtall@Github</a> in CN</h1>
+    </div>
+<div class="divcss5"><img src={{ url_for('static', filename='img/logo.jpg') }} width="380" height="380"  /></div>
+{% endblock %}
+
+</body>
+</html>

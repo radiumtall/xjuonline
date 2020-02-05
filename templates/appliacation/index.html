@@ -1,0 +1,21 @@
+{% extends 'appliacation/my_base.html' %}
+<html lang="en">
+
+{% block head %}
+{{ super() }}
+    <style type="text/css">
+        .divcss5{text-align:center}
+    </style>
+{% endblock %}
+
+{% block page_content %}
+    <div class="page-header">
+        <h1>欢迎来到新疆大学信息科学与工程学院（网络空间安全学院）<br>信息化疫情防控平台</h1>
+        <h2>Hello，{{name}}，今天是 {{ datetime }}，XjuOnline助手 提示你：勤洗手，少外出！</h2>
+        <h2><a href={{ url_for('xjuonline.func_user') }}>点击链接</a>进行每日报告</h2>
+</div>
+<div class="divcss5"><img src={{ url_for('static', filename='img/logo.jpg') }} width="380" height="380"  /></div>
+{% endblock %}
+
+</body>
+</html>

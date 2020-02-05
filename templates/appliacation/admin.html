@@ -1,0 +1,83 @@
+{% extends 'appliacation/my_base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+<html lang="en">
+{% block head %}
+    {{ super() }}
+
+		<style type="text/css">
+			/*表格样式*/
+			table {
+				width: 90%;
+				background: #ccc;
+				margin: 10px auto;
+				border-collapse: collapse;/*border-collapse:collapse合并内外边距(去除表格单元格默认的2个像素内外边距*/
+			}
+			th,td {
+				height: 25px;
+				line-height: 25px;
+				text-align: center;
+				border: 1px solid #ccc;
+			}
+			th {
+				background: #d7e4ff;
+				font-weight: normal;
+			}
+			tr {
+				background: #fff;
+			}
+			tr:hover {
+				background: #eacbf0;
+			}
+			td a {
+				color: #06f;
+				text-decoration: none;
+			}
+			td a:hover {
+				color: #06f;
+				text-decoration: underline;
+			}
+		</style>
+{% endblock %}
+{% block page_content %}
+    <div class="page-header">
+        <h1>查看当日所有信息</h1>
+        <p>输入时间，点击下载该日期的数据，输入all则下载全部（默认当天）</p>
+        <p>输入时间，点击查看该日期的数据，输入all则查看全部（默认当天）</p>
+        <p>{{ time }} 收集数据量： {{ id_list|length }} </p>
+    </div>
+        <form action={{ url_for('xjuonline.func_admin') }} method="post">
+    {{ wtf.quick_form(form) }}
+
+    </form>
+    <table>
+			<tr>
+				<!-- th为表格标题栏-->
+				<th>ID</th>
+				<th>username</th>
+				<th>name</th>
+                <th>time</th>
+                <th>本人是否健康</th>
+                <th>家人是否健康</th>
+                <th>是否返校</th>
+			</tr>
+        {% for i in id_list %}
+			<tr>
+				<td>{{ i }}</td>
+
+				<td>{{ info[i]['username'] }}</td>
+
+				<td>{{ info[i]['name'] }}</td>
+
+                <td>{{ info[i]['time'] }}</td>
+                
+                <td>{{ info[i]['s1'] }}</td>
+                <td>{{ info[i]['s2'] }}</td>
+                <td>{{ info[i]['s3'] }}</td>
+			
+			</tr>
+    {% endfor %}
+		</table>
+{% endblock %}
+
+</body>
+</html>
